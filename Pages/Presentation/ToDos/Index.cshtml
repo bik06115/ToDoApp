@@ -1,0 +1,60 @@
+﻿@page
+@model ToDoApp.Pages.Presentation.ToDos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDo[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDo[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDo[0].DeadLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDo[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDo[0].HighPriority)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ToDo) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighPriority)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
